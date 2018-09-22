@@ -15,7 +15,7 @@ require("express")()
         })
     )
 
-    result.success ? res.status(200).send(result) : res.sendStatus(403)
+    result.success ? res.send(result) : res.sendStatus(403)
   })
   .listen(3000, err => {
     if (err) console.error(err)
