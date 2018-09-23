@@ -11,7 +11,8 @@ require("express")()
         .post("https://www.google.com/recaptcha/api/siteverify")
         .form({
           secret: process.env.CAPTCHA_SECRET,
-          response: req.body["g-recaptcha-response"]
+          response: req.body["g-recaptcha-response"],
+          remoteip: req.ip
         })
     )
 
