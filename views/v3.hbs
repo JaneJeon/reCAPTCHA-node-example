@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>reCAPTCHA test</title>
+    <script src='https://www.google.com/recaptcha/api.js?onload=bgcb&render={{V3_PUBLIC}}' async defer>
+    </script>
+    <script>
+        async function bgcb() {
+            const token = await grecaptcha.execute('{{V3_PUBLIC}}', {action: 'v3'})
+
+            const res = await fetch('/v3', {
+                method: 'POST',
+                body: JSON.stringify({token: token}), // MUST send as a serialized object
+                headers: { 'Content-Type': 'application/json' }
+            })
+
+            document.querySelector('body').innerHTML = JSON.stringify(await res.json())
+        }
+    </script>
+</head>
+<body>
+Loading...
+</body>
+</html>

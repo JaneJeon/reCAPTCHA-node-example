@@ -12,22 +12,24 @@
             for (const [key, val] of new FormData(document.querySelector('form')).entries())
                 data[key] = val
             
-            const res = await fetch('/', {
+            const res = await fetch('/v2', {
                 method: 'POST',
-                body: JSON.stringify(data),
+                body: JSON.stringify(data), // MUST send as a string
                 headers: { 'Content-Type': 'application/json' }
             })
-            
-            document.querySelector('body').innerHTML = 
-                `status: ${res.status}${res.ok ? JSON.stringify(await res.json()) : ''}`
+
+            // must convert to string first
+            document.querySelector('body').innerHTML = JSON.stringify(await res.json())
         }
     </script>
 </head>
 <body>
     <form autocomplete="off">
-        Make a comment:
-        <textarea name='comment' autofocus></textarea>
-        <button class="g-recaptcha" data-sitekey="YOUR_PUBLIC_KEY" data-callback="onVerify">
+        <label>
+            Make a comment:
+            <textarea name='comment' autofocus></textarea>
+        </label>
+        <button class="g-recaptcha" data-sitekey="{{V2_PUBLIC}}" data-callback="onVerify">
             Submit
         </button>
     </form>
