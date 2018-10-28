@@ -7,6 +7,7 @@ require("express")()
   .set("views", path.join(__dirname, "views"))
   .set("view engine", "hbs")
   .use(require("body-parser").json())
+  .get("/", (req, res) => res.render("index"))
   .get("/v2", (req, res) =>
     res.render("v2", { V2_PUBLIC: process.env.V2_PUBLIC })
   )

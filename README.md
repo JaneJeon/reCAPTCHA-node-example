@@ -17,6 +17,6 @@ This repo demonstrates how to set up reCAPTCHA v2 (invisible) and v3 with node.j
 https://developers.google.com/recaptcha/docs/
 
 ### TODO
-- [ ] Add index
+- [x] Add index
 - [ ] Figure out if deleting the site cookie (non-Google) and signing back in lowers the score in v3
 - [ ] Add login implementation where the user is forced to check with v2 if the v3 score is too low
